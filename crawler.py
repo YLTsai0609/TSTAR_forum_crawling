@@ -9,7 +9,7 @@
     crawler, dict2df_sort, data2mysql
 
     TODO make a header_pool with multi agents,
-         using logging
+         Try AirFlow
 
 '''
 import numpy as np
@@ -36,7 +36,6 @@ connect_info_dict = {'host': '35.234.10.179',
                      'db': 'tstar_comments'}
 ######################################  logger init setting ##############
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename='crawler.log', level=logging.INFO)
 
 
 def main():
