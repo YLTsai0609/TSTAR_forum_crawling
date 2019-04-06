@@ -40,38 +40,25 @@ logger = logging.getLogger(__name__)
 
 def main():
 
-    logging.basicConfig(filename='test.log', level=logging.INFO)
+    logging.basicConfig(filename='crawler.log', level=logging.INFO)
     logger.info(
-        'START Crawling information TIME : {0}'.format(
-            datetime.now(
-                tz=timezone(
-                    timedelta(
-                        hours=8)))))
+        'START Crawling information TIME : {0}'.format(datetime.now()))
 
     result_list_form, result_table_form = crawler()
 
     logging.info(
         'SUCCESSED Crawling TIME : {0}'.format(
-            datetime.now(
-                tz=timezone(
-                    timedelta(
-                        hours=8)))))
+            datetime.now()))
 
     logging.info(
         'TRASNFORMAING result to dataframe TIME : {0}'.format(
-            datetime.now(
-                tz=timezone(
-                    timedelta(
-                        hours=8)))))
+            datetime.now()))
 
     df_tmp = dict2df_sort(result_table_form)
 
     logging.info(
         'SAVING dataframe to MySQL 5.7 TIME : {0}'.format(
-            datetime.now(
-                tz=timezone(
-                    timedelta(
-                        hours=8)))))
+            datetime.now()))
 
     data2mysql(df_tmp)
 
@@ -157,7 +144,7 @@ def crawler():
             loging.info('accessed failed at page {}'.format(p + 1))
             loging.info(res.text)
         # complie by bs4
-        soup = BeautifulSoup(res.text)
+        soup = BeautifulSoup(res.text,'html.parser')
         # get all td tag
         td_set = [ele for ele in soup.find_all('td')]
         # assign now time with 8+
@@ -192,7 +179,7 @@ def crawler():
                     if article_res.status_code == 200:
                         logging.info('accessed topic {} successfully'.format(
                             tag.a.string) + '  ' + 'crawling contents.....')
-                        article_soup = BeautifulSoup(article_res.text)
+                        article_soup = BeautifulSoup(article_res.text, 'html.parser')
                         # 是否為樓主 作者 會員等級 個人積分 發文/回應時間 回應內容
                         content_list = []
                         for tag_author, tag_personal_score, tag_ts, tag_content in zip(
