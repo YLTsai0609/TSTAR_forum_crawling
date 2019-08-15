@@ -31,8 +31,8 @@ root_path = 'https://www.mobile01.com/'
 keyword_list = ['台灣之星', '台星']
 ######################################  MySQL info #######################
 connect_info_dict = {'host': '35.234.10.179',
-                     'user': 'root',
-                     'password': '0000',
+                     'user': '*******',
+                     'password': '*******',
                      'db': 'tstar_comments'}
 ######################################  logger init setting ##############
 logger = logging.getLogger(__name__)
